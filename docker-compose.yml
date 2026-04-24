@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=${FRONTEND_VITE_API_URL:-""}
+        - VITE_STANDARD_MODE_DAYS=${STANDARD_MODE_DAYS:-7}
+    expose:
+      - "80"
+    env_file:
+      - .env
+    networks:
+      - web_gateway
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    expose:
+      - "8000"
+    environment:
+      - EVENTS_DIR=${EVENTS_DIR:-/app/data/events}
+    env_file:
+      - .env
+    networks:
+      - web_gateway
+    volumes:
+      - ./backend/data:/app/data
+    restart: unless-stopped
+
+networks:
+  web_gateway:
+    external: true

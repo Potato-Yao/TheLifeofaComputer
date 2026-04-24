@@ -7,8 +7,8 @@ from models.event import EventSchema
 from models.player import PlayerState
 
 class EventDispatcher:
-    def __init__(self, data_dir: str = "./data/events"):
-        self.data_dir = data_dir
+    def __init__(self, data_dir: str = None):
+        self.data_dir = data_dir or os.getenv("EVENTS_DIR", "./data/events")
         self.event_pool: List[EventSchema] = []
         self.fallback_events: List[EventSchema] = [
             EventSchema(

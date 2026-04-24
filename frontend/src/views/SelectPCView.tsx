@@ -99,7 +99,7 @@ export default function SelectPCView({ onSelect }: { onSelect: () => void }) {
               isEndless ? 'translate-x-6' : 'translate-x-1'
             }`} />
           </button>
-          <span className="text-zinc-300 font-medium">无尽模式 (取消 7 天生存限制)</span>
+          <span className="text-zinc-300 font-medium">无尽模式 (取消 {import.meta.env.VITE_STANDARD_MODE_DAYS || 7} 天生存限制)</span>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -111,7 +111,16 @@ export default function SelectPCView({ onSelect }: { onSelect: () => void }) {
             >
               <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               
-              <Laptop size={48} className="text-indigo-400 mb-4 group-hover:scale-110 transition-transform" />
+              <div className="h-32 mb-4 flex items-center justify-center">
+                <img 
+                  src={`/pcs/${pc.model_id}.png`} 
+                  alt={pc.display_name} 
+                  className="w-auto h-full object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
+                />
+              </div>
               <h2 className="text-xl font-semibold mb-2">{pc.display_name}</h2>
               
               <div className="space-y-2 mt-4 text-sm text-zinc-400">

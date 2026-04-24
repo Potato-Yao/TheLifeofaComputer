@@ -238,8 +238,8 @@ export function WikiApp() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in">
           <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 max-w-sm w-full shadow-2xl flex flex-col items-center border border-zinc-200 dark:border-zinc-800">
             <h3 className="text-lg font-bold mb-4">扫码加入网协答疑群</h3>
-            <div className="w-48 h-48 bg-zinc-100 dark:bg-zinc-800 rounded-xl flex items-center justify-center mb-6 border-2 border-dashed border-zinc-300 dark:border-zinc-700">
-              <QrCode size={64} className="text-zinc-400" />
+            <div className="w-48 h-48 bg-zinc-100 dark:bg-zinc-800 rounded-xl flex items-center justify-center mb-6 border-2 border-dashed border-zinc-300 dark:border-zinc-700 overflow-hidden">
+              <img src="/qrcode.png" alt="群二维码" className="w-full h-full object-contain" onError={(e) => e.currentTarget.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="%239ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="3"></rect><rect x="14" y="7" width="3" height="3"></rect><rect x="7" y="14" width="3" height="3"></rect><rect x="14" y="14" width="3" height="3"></rect></svg>'} />
             </div>
             <button onClick={handleJoinGroup} className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all shadow-md">我已加群</button>
             <button onClick={() => setShowQrModal(false)} className="w-full py-3 mt-2 text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 text-sm font-medium">取消</button>
