@@ -61,10 +61,11 @@ export default function SelectPCView({ onSelect }: { onSelect: () => void }) {
   };
 
   return (
-    <div className="w-full h-full bg-zinc-950 flex flex-col items-center justify-center p-6 text-zinc-100 relative overflow-y-auto">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-zinc-950 z-0"></div>
+    <div className="w-full h-full bg-zinc-950 text-zinc-100 relative overflow-y-auto">
+      <div className="fixed inset-0 bg-gradient-to-br from-indigo-900/20 to-zinc-950 z-0 pointer-events-none"></div>
       
-      <div className="z-10 w-full max-w-4xl py-12">
+      <div className="relative z-10 w-full max-w-5xl mx-auto min-h-full flex flex-col justify-center py-12 px-4 sm:px-6">
+        <div className="my-auto">
         {computer && (
           <div className="mb-12 bg-zinc-900/80 border border-indigo-500/30 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between backdrop-blur-md">
             <div>
@@ -138,6 +139,7 @@ export default function SelectPCView({ onSelect }: { onSelect: () => void }) {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </div>
