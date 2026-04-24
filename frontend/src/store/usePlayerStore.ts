@@ -247,4 +247,7 @@ export const usePlayerStore = create<PlayerStore>()(
     },
     computer: null,
   })
-}), { name: 'cyber-survival-save' }));
+}), { 
+  name: 'cyber-survival-save',
+  partialize: (state) => state.hidden_flags?.is_endless_mode ? state : {} as any
+}));

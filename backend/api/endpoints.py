@@ -69,10 +69,17 @@ async def resolve_action(req: ResolveActionRequest):
     if len(req.state.hidden_flags.history_tags) > 50:
         req.state.hidden_flags.history_tags = req.state.hidden_flags.history_tags[-50:]
     
-    return {
+    response_data = {
         "state": req.state,
         "result_text": chosen_outcome.result_text
     }
+    
+    if chosen_outcome.next_event_id:
+        next_event = dispatcher.get_event_by_id(chosen_outcome.next_event_id)
+        if next_event:
+            response_data["next_event"] = next_event
+
+    return response_data
 
 @router.post("/admin/reload_events")
 async def reload_events():

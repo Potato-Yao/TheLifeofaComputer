@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - VITE_API_URL=${FRONTEND_VITE_API_URL:-""}
         - VITE_STANDARD_MODE_DAYS=${STANDARD_MODE_DAYS:-7}
     ports:
       - "8000:8000"

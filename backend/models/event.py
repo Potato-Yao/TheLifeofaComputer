@@ -1,10 +1,11 @@
 from pydantic import BaseModel
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Union
 
 class EventOutcome(BaseModel):
     probability: float
     result_text: str
     stat_changes: Dict[str, int]
+    next_event_id: Optional[str] = None
 
 class EventOption(BaseModel):
     option_id: str
@@ -21,8 +22,8 @@ class EventSchema(BaseModel):
     prerequisites: Dict[str, Any] = {}
     
     title: str
-    description: str
-    technical_context: str
+    description: Union[str, List[str]]
+    technical_context: Optional[str] = None
     options: List[EventOption]
     
     timeout_seconds: Optional[int] = None

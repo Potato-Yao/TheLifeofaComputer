@@ -17,8 +17,8 @@ export interface EventSchema {
   event_id: string;
   event_type: string;
   title: string;
-  description: string;
-  technical_context: string;
+  description: string | string[];
+  technical_context?: string;
   options: EventOption[];
   timeout_seconds?: number;
   timeout_option_id?: string;
@@ -36,9 +36,25 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
   const [timeoutRemaining, setTimeoutRemaining] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // New states for extended event logic
+  const [currentEventPage, setCurrentEventPage] = useState<number>(0);
+  const [nextEventObj, setNextEventObj] = useState<EventSchema | null>(null);
+
+  const loadEvent = (event: EventSchema) => {
+    setCurrentEvent(event);
+    setCurrentEventPage(0);
+    setEventResult(null);
+    if (event.timeout_seconds && event.timeout_seconds > 0) {
+      setTimeoutRemaining(event.timeout_seconds);
+    } else {
+      setTimeoutRemaining(null);
+    }
+  };
+
   const fetchDailyEvent = async () => {
     setIsEventLoading(true);
     setEventResult(null);
+    setNextEventObj(null);
     setTimeoutRemaining(null);
     try {
       const state = usePlayerStore.getState();
@@ -53,10 +69,7 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
       }
       const data = await res.json();
       if (data.event) {
-        setCurrentEvent(data.event);
-        if (data.event.timeout_seconds && data.event.timeout_seconds > 0) {
-          setTimeoutRemaining(data.event.timeout_seconds);
-        }
+        loadEvent(data.event);
       }
       if (data.state) {
         setPlayerState(data.state);
@@ -74,8 +87,14 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
   }, [day]);
 
   useEffect(() => {
-    if (timeoutRemaining === null || !currentEvent) return;
+    if (timeoutRemaining === null || !currentEvent || eventResult) return;
     
+    // Only tick the timer if we are on the LAST page of the event description
+    const isMultiPage = Array.isArray(currentEvent.description);
+    const isLastPage = !isMultiPage || currentEventPage === (currentEvent.description as string[]).length - 1;
+    
+    if (!isLastPage) return; // Wait until options are shown to start timing out
+
     if (timeoutRemaining <= 0) {
       if (currentEvent.timeout_option_id) {
         handleOptionClick(currentEvent.timeout_option_id);
@@ -89,7 +108,7 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
     }, 1000);
 
     return () => clearTimeout(timerId);
-  }, [timeoutRemaining, currentEvent]);
+  }, [timeoutRemaining, currentEvent, currentEventPage, eventResult]);
 
   const handleOptionClick = async (option_id: string) => {
     if (!currentEvent) return;
@@ -111,6 +130,9 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
       }
       if (data.result_text) {
         setEventResult(data.result_text);
+      }
+      if (data.next_event) {
+        setNextEventObj(data.next_event);
       }
     } catch(e) {
       console.error("Resolve error:", e);
@@ -139,6 +161,9 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
     { label: '存储', value: health_status.storage, icon: HardDrive },
     { label: '软件', value: health_status.software, icon: LayoutTemplate },
   ];
+
+  const isMultiPageEvent = currentEvent && Array.isArray(currentEvent.description);
+  const isLastPage = !isMultiPageEvent || currentEventPage === (currentEvent?.description as string[]).length - 1;
 
   return (
     <div className="w-full h-full bg-zinc-200 dark:bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center relative flex flex-col md:flex-row overflow-hidden text-zinc-900 dark:text-zinc-100 transition-colors">
@@ -243,9 +268,9 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
       </div>
 
       {/* Main Area */}
-      <div className="flex-1 relative z-10 flex items-center justify-center p-4 md:p-8 overflow-y-auto pb-32 md:pb-8">
+      <div className="flex-1 relative z-10 flex flex-col items-center p-4 md:p-8 overflow-y-auto pb-32 md:pb-8">
         {!activeApp ? (
-          <div className="bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md p-6 rounded-2xl border border-zinc-200 dark:border-white/10 max-w-lg w-full shadow-2xl animate-in fade-in zoom-in duration-300 transition-colors">
+          <div className="my-auto shrink-0 bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md p-6 rounded-2xl border border-zinc-200 dark:border-white/10 max-w-lg w-full shadow-2xl animate-in fade-in zoom-in duration-300 transition-colors">
             {isEventLoading ? (
               <div className="flex flex-col items-center justify-center h-48">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
@@ -260,12 +285,27 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
                 <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed">
                   {eventResult}
                 </p>
+                {currentEvent?.technical_context && (
+                  <div className="bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/30 p-4 rounded-xl mb-6">
+                    <div className="text-sm font-bold text-indigo-800 dark:text-indigo-300 mb-1 flex items-center gap-2">
+                      <Book size={16} /> 赛博科普
+                    </div>
+                    <p className="text-xs text-indigo-700 dark:text-indigo-200/80 leading-relaxed">
+                      {currentEvent.technical_context}
+                    </p>
+                  </div>
+                )}
                 <button 
                   onClick={() => {
-                    setEventResult(null);
-                    setCurrentEvent(null);
+                    if (nextEventObj) {
+                      loadEvent(nextEventObj);
+                      setNextEventObj(null);
+                    } else {
+                      setEventResult(null);
+                      setCurrentEvent(null);
+                    }
                   }}
-                  className="bg-indigo-100 hover:bg-indigo-200 dark:bg-white/10 dark:hover:bg-white/20 text-indigo-700 dark:text-white p-3 rounded-xl transition-colors text-center"
+                  className="bg-indigo-100 hover:bg-indigo-200 dark:bg-white/10 dark:hover:bg-white/20 text-indigo-700 dark:text-white p-3 rounded-xl transition-colors text-center font-medium"
                 >
                   继续
                 </button>
@@ -276,49 +316,56 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
                   <AlertTriangle size={24} />
                   <h3 className="text-lg font-bold">{currentEvent.title}</h3>
                 </div>
-                <p className="text-zinc-700 dark:text-zinc-300 mb-4 leading-relaxed">
-                  {currentEvent.description}
-                </p>
-                {currentEvent.technical_context && (
-                  <div className="bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/30 p-3 rounded-xl mb-6">
-                    <p className="text-xs text-indigo-700 dark:text-indigo-300 font-mono">
-                      [系统提示] {currentEvent.technical_context}
-                    </p>
-                  </div>
-                )}
                 
-                {timeoutRemaining !== null && currentEvent.timeout_seconds && (
-                  <div className="mb-4">
-                    <div className="flex justify-between text-xs font-bold text-red-500 dark:text-red-400 mb-1">
-                      <span>紧急！请尽快做出选择</span>
-                      <span>{timeoutRemaining}s</span>
+                <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed whitespace-pre-wrap">
+                  {isMultiPageEvent ? (currentEvent.description as string[])[currentEventPage] : currentEvent.description}
+                </p>
+                
+                {isLastPage ? (
+                  <>
+                    {timeoutRemaining !== null && currentEvent.timeout_seconds && (
+                      <div className="mb-4">
+                        <div className="flex justify-between text-xs font-bold text-red-500 dark:text-red-400 mb-1">
+                          <span>紧急！请尽快做出选择</span>
+                          <span>{timeoutRemaining}s</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-red-500 transition-all duration-1000 linear"
+                            style={{ width: `${(timeoutRemaining / currentEvent.timeout_seconds) * 100}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-2">
+                      {currentEvent.options.map(opt => (
+                        <button 
+                          key={opt.option_id}
+                          onClick={() => handleOptionClick(opt.option_id)}
+                          disabled={attributes.cyber_sense < opt.required_cyber_sense}
+                          className="bg-zinc-100 hover:bg-zinc-200 dark:bg-white/10 dark:hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed p-3 rounded-xl transition-colors text-left flex justify-between items-center group"
+                        >
+                          <span className="text-zinc-800 dark:text-white">{opt.text}</span>
+                          {opt.required_cyber_sense > 0 && (
+                            <span className="text-xs text-indigo-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                              需常识 &gt; {opt.required_cyber_sense}
+                            </span>
+                          )}
+                        </button>
+                      ))}
                     </div>
-                    <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-red-500 transition-all duration-1000 linear"
-                        style={{ width: `${(timeoutRemaining / currentEvent.timeout_seconds) * 100}%` }}
-                      ></div>
-                    </div>
+                  </>
+                ) : (
+                  <div className="flex justify-end">
+                    <button 
+                      onClick={() => setCurrentEventPage(prev => prev + 1)}
+                      className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-xl transition-colors text-sm font-medium animate-in fade-in slide-in-from-bottom-2"
+                    >
+                      下一页
+                    </button>
                   </div>
                 )}
-
-                <div className="flex flex-col gap-3">
-                  {currentEvent.options.map(opt => (
-                    <button 
-                      key={opt.option_id}
-                      onClick={() => handleOptionClick(opt.option_id)}
-                      disabled={attributes.cyber_sense < opt.required_cyber_sense}
-                      className="bg-zinc-100 hover:bg-zinc-200 dark:bg-white/10 dark:hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed p-3 rounded-xl transition-colors text-left flex justify-between items-center group"
-                    >
-                      <span className="text-zinc-800 dark:text-white">{opt.text}</span>
-                      {opt.required_cyber_sense > 0 && (
-                        <span className="text-xs text-indigo-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                          需常识 &gt; {opt.required_cyber_sense}
-                        </span>
-                      )}
-                    </button>
-                  ))}
-                </div>
               </>
             ) : (
               <div className="flex flex-col items-center justify-center h-full text-zinc-500 dark:text-zinc-400 min-h-[16rem]">
@@ -326,7 +373,7 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
                 <p className="font-medium text-zinc-800 dark:text-zinc-200">今天的事情已经忙完了。</p>
                 <p className="text-sm mt-2 mb-6">点击右下角的按钮结束这一天吧。</p>
                 
-                {usePlayerStore.getState().hidden_flags.joined_npa && (
+                {hidden_flags.joined_npa && (
                   <div className="mt-4 p-4 bg-pink-50 dark:bg-pink-900/10 border border-pink-100 dark:border-pink-800/30 rounded-2xl max-w-sm text-left relative animate-in fade-in zoom-in slide-in-from-bottom-4">
                     <div className="absolute -top-3 left-4 bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 px-2 py-0.5 rounded text-[10px] font-bold shadow-sm">树莓娘的小贴士</div>
                     <p className="text-xs text-pink-700 dark:text-pink-400 mt-2 leading-relaxed">
@@ -387,13 +434,20 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
       {/* FAB - Next Day */}
       <button 
         onClick={() => {
+          if (currentEvent && !eventResult) return;
           setEventResult(null);
           setCurrentEvent(null);
           nextDay();
         }}
-        className="absolute bottom-20 md:bottom-8 right-4 md:right-8 z-30 w-14 h-14 md:w-16 md:h-16 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_30px_rgba(79,70,229,0.5)] hover:shadow-[0_0_40px_rgba(79,70,229,0.5)] transition-all duration-300 hover:scale-110 active:scale-95 group"
+        disabled={currentEvent !== null && eventResult === null}
+        className={clsx(
+          "absolute bottom-20 md:bottom-8 right-4 md:right-8 z-30 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_30px_rgba(79,70,229,0.5)] transition-all duration-300",
+          (currentEvent !== null && eventResult === null) 
+            ? "bg-zinc-400 dark:bg-zinc-700 opacity-50 cursor-not-allowed" 
+            : "bg-indigo-600 hover:bg-indigo-500 text-white hover:shadow-[0_0_40px_rgba(79,70,229,0.5)] hover:scale-110 active:scale-95 group"
+        )}
       >
-        <Power size={24} className="group-hover:rotate-180 transition-transform duration-500" />
+        <Power size={24} className={clsx(!(currentEvent !== null && eventResult === null) && "group-hover:rotate-180 transition-transform duration-500")} />
       </button>
     </div>
   );

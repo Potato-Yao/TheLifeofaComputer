@@ -1,1 +1,3 @@
 generateEvent_tool.exe
+.env
+docker-compose.yml

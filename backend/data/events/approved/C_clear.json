@@ -1,0 +1,116 @@
+{
+  "event_id": "event_00123",
+  "event_type": "routine",
+  "tags": [
+    "电脑维护",
+    "大一生活",
+    "存储管理"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "C盘快撑爆了，电脑卡卡的！",
+  "description": "大一新生小张一打开电脑，发现C盘剩余空间不足，整台电脑仿佛都在哀嚎。正当他苦恼于如何拯救这台老旧的笔记本时，突然想到上次网课老师提过的清理技巧。究竟该如何处理？",
+  "technical_context": "C盘过满不仅会导致系统反应慢，更可能引发系统崩溃。定期清理临时文件、卸载不常用的软件是维护电脑性能的基本功。不要忘记将重要文件备份到其他盘符哦！",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "立即清理C盘，删除临时文件和无用软件",
+      "required_cyber_sense": 1,
+      "outcomes": [
+        {
+          "probability": 0.8,
+          "result_text": "清理后，C盘空间恢复了，电脑运行顺畅，小张心情大好！",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 10,
+            "health_storage": 20,
+            "health_software": 0,
+            "mental_state": 5,
+            "wealth": 0,
+            "cyber_sense": 1
+          }
+        },
+        {
+          "probability": 0.2,
+          "result_text": "不小心删掉了重要文件，小张只能哭着去找备份。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": -5,
+            "health_storage": 10,
+            "health_software": 0,
+            "mental_state": -10,
+            "wealth": 0,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "将重要文件转移到U盘，留出C盘空间",
+      "required_cyber_sense": 1,
+      "outcomes": [
+        {
+          "probability": 0.7,
+          "result_text": "成功转移后，C盘空间增加，电脑运行流畅，小张对自己的选择很满意。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 15,
+            "health_storage": 25,
+            "health_software": 0,
+            "mental_state": 10,
+            "wealth": 0,
+            "cyber_sense": 1
+          }
+        },
+        {
+          "probability": 0.3,
+          "result_text": "U盘里有病毒，感染了电脑，小张又得去找网协帮忙。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": -10,
+            "health_storage": 0,
+            "health_software": -20,
+            "mental_state": -15,
+            "wealth": 0,
+            "cyber_sense": -1
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_3",
+      "text": "置之不理，继续忍受卡顿",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.5,
+          "result_text": "小张慢慢习惯了卡顿，偶尔还会给同学讲述自己的‘忍耐’之道。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": -5,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": -5,
+            "wealth": 0,
+            "cyber_sense": 0
+          }
+        },
+        {
+          "probability": 0.5,
+          "result_text": "突然间电脑蓝屏了，小张意识到不作为的代价！",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": -20,
+            "health_storage": 0,
+            "health_software": -20,
+            "mental_state": -20,
+            "wealth": 0,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    }
+  ]
+}

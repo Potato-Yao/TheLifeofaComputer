@@ -1,0 +1,103 @@
+{
+  "event_id": "ev_20231017_001",
+  "event_type": "routine",
+  "tags": [
+    "学习",
+    "Solidworks",
+    "工程设计"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "Solidworks装不明白",
+  "description": "在一次工程设计课上，你被要求使用Solidworks进行一个小项目。然而，当你打开软件时，各种按钮和选项让你感到无从下手。你甚至开始怀疑自己是不是走错了教室，难道今天的课是关于外星人语言的？",
+  "technical_context": "Solidworks是一个强大的CAD软件，广泛应用于工程设计和3D建模。掌握Solidworks的基本操作，可以帮助你在未来的学习和工作中大放异彩！",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "向同班同学请教",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.6,
+          "result_text": "你的同学非常乐意帮忙，他们不仅教你如何使用Solidworks的基本功能，还分享了一些小技巧。你感觉自己慢慢能够掌握这个软件了！",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": 10,
+            "wealth": 0,
+            "cyber_sense": 5
+          }
+        },
+        {
+          "probability": 0.4,
+          "result_text": "你的同学似乎也不太懂，最后你们两个在软件面前相对而坐，互相茫然。看起来今天的学习只有白白浪费时间了。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": -5,
+            "wealth": 0,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "查看网上教程",
+      "required_cyber_sense": 5,
+      "outcomes": [
+        {
+          "probability": 0.7,
+          "result_text": "通过网上的教程，你迅速掌握了一些Solidworks的关键操作，感觉像是打开了新世界的大门！",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": 15,
+            "wealth": 0,
+            "cyber_sense": 10
+          }
+        },
+        {
+          "probability": 0.3,
+          "result_text": "你在网上找到了一些看似有用的教程，但里面的讲解让你更加困惑，最终还是没能掌握Solidworks。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": -10,
+            "wealth": 0,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_3",
+      "text": "干脆放弃，去吃个泡面",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你决定放弃学习Solidworks，去食堂买了个泡面。虽然没有掌握技能，但至少能填饱肚子，心情也变得好多了。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": 5,
+            "wealth": -10,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    }
+  ]
+}

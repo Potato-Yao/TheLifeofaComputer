@@ -155,5 +155,15 @@ class EventDispatcher:
             
         return random.choices(candidates, weights=weights, k=1)[0]
 
+    def get_event_by_id(self, event_id: str) -> Optional[EventSchema]:
+        """Fetch a specific event by its ID"""
+        for event in self.event_pool:
+            if event.event_id == event_id:
+                return event
+        for event in self.fallback_events:
+            if event.event_id == event_id:
+                return event
+        return None
+
 # Singleton instance
 dispatcher = EventDispatcher()

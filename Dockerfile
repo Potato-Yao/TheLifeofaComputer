@@ -6,9 +6,7 @@ COPY frontend/package*.json ./
 RUN npm install
 
 COPY frontend/ ./
-ARG VITE_API_URL=""
 ARG VITE_STANDARD_MODE_DAYS=7
-ENV VITE_API_URL=$VITE_API_URL
 ENV VITE_STANDARD_MODE_DAYS=$VITE_STANDARD_MODE_DAYS
 RUN npm run build
 

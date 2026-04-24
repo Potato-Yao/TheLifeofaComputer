@@ -1,0 +1,77 @@
+{
+  "event_id": "crisis_001",
+  "event_type": "crisis",
+  "tags": [
+    "误删",
+    "系统重装",
+    "紧急事件"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "一顿操作猛如虎，误删系统盘导致要重装了QAQ",
+  "description": "在一次愉快的打游戏过程中，你的手指一滑，居然把系统盘给误删了！屏幕瞬间黑屏，心中一阵慌乱，俨然一场灾难降临。你在宿舍里焦急地走来走去，想着要怎么恢复这个悲惨的局面。",
+  "technical_context": "系统盘是电脑运行的核心，包含操作系统和重要的系统文件。误删系统盘会导致无法启动电脑，必须重装系统。定期备份文件和系统可以避免这样的悲剧发生！",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "找网协（免费靠谱）",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "网协的师兄们迅速赶来，帮助你恢复了系统，虽然过程中有些小插曲，但总算是避免了重装，留下了一个惨痛的教训。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": -10,
+            "wealth": 0,
+            "cyber_sense": 5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "找学服（昂贵坑人）",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "学服安排的师傅来了，花了你一大笔钱，结果却只给你重装了系统，数据完全丢失，心痛不已。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": -50,
+            "health_software": 0,
+            "mental_state": -20,
+            "wealth": -100,
+            "cyber_sense": -5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_3",
+      "text": "找外头/自己修",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你决定自己动手，结果在网上找了些教程，依然一头雾水，最终不得不放弃，导致系统重装仍需花钱，心情跌至谷底。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": -20,
+            "health_software": 0,
+            "mental_state": -30,
+            "wealth": -50,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    }
+  ]
+}

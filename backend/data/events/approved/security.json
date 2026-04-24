@@ -1,0 +1,82 @@
+{
+  "event_id": "event_001",
+  "event_type": "routine",
+  "tags": [
+    "大学生活",
+    "电脑知识"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "电脑课堂的惊喜",
+  "description": "在周五的计算机基础课堂上，老师突然决定给大家布置一个小作业：如何提高个人的网络安全意识。你心里暗想：这不是我擅长的领域！不过，跟随同学们的讨论，课堂气氛还是非常轻松有趣。",
+  "technical_context": "网络安全意识是指用户对潜在网络风险的理解和应对能力。在网络世界中，防范网络攻击、保护个人隐私信息至关重要。要定期更新密码，并注意不要随意点击不明链接。 ",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "积极参与讨论，分享自己的看法",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.7,
+          "result_text": "你在讨论中表现出色，老师表扬了你，给你额外的加分！",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": 2,
+            "wealth": 0,
+            "cyber_sense": 1
+          }
+        },
+        {
+          "probability": 0.3,
+          "result_text": "尽管你发表了意见，但同学们对你的观点不以为然，感到有些失望。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": -1,
+            "wealth": 0,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "默默听课，努力记笔记",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.6,
+          "result_text": "虽然没有主动参与，但你记录了很多有用的信息，课后复习时特别轻松。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": 1,
+            "wealth": 0,
+            "cyber_sense": 1
+          }
+        },
+        {
+          "probability": 0.4,
+          "result_text": "即使记录了笔记，但课堂内容太多，你还是感到有些迷茫。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": 0,
+            "wealth": 0,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -66,7 +66,7 @@ export default function SelectPCView({ onSelect }: { onSelect: () => void }) {
       
       <div className="relative z-10 w-full max-w-5xl mx-auto min-h-full flex flex-col justify-center py-12 px-4 sm:px-6">
         <div className="my-auto">
-        {computer && (
+        {computer && hidden_flags?.is_endless_mode && (
           <div className="mb-12 bg-zinc-900/80 border border-indigo-500/30 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between backdrop-blur-md">
             <div>
               <h2 className="text-2xl font-bold text-white mb-2">检测到休眠中的系统</h2>

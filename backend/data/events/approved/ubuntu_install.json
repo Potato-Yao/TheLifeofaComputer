@@ -1,0 +1,70 @@
+{
+  "event_id": "event_20231003_ubuntu_install",
+  "event_type": "routine",
+  "tags": [
+    "Ubuntu",
+    "安装",
+    "大一新生"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "Ubuntu安装小困扰",
+  "description": "今天上课，教授宣布下周开始的项目要求使用Ubuntu系统。你心里一紧，从未接触过Linux的你，脑海中浮现出无数的错误提示和神秘的终端命令，真是让人胆战心惊！这时，你面临选择：是挑战自我，还是寻求帮助？",
+  "technical_context": "Ubuntu是一款基于Debian的开源Linux操作系统，以其易于使用和强大的社区支持著称。安装它可以提高你对计算机系统的理解，但也可能让初学者感到困惑。",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "决定自己动手试试安装Ubuntu",
+      "required_cyber_sense": 2,
+      "outcomes": [
+        {
+          "probability": 0.7,
+          "result_text": "你按照网上的教程一步步操作，最终成功安装了Ubuntu，感觉自己像个黑客般自信！",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 5,
+            "mental_state": 5,
+            "wealth": 0,
+            "cyber_sense": 3
+          }
+        },
+        {
+          "probability": 0.3,
+          "result_text": "在安装过程中，出现了一些问题，搞得你心烦意乱，最后不得不求助于朋友。虽然没出大事，但你对系统的理解没有增长。",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": -5,
+            "health_storage": 0,
+            "health_software": 0,
+            "mental_state": -3,
+            "wealth": 0,
+            "cyber_sense": 1
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "去找学长请教如何安装",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "学长很乐于助人，耐心教你如何安装Ubuntu，并分享了一些实用的小窍门。你收获了知识，也交了个朋友！",
+          "stat_changes": {
+            "health_hardware": 0,
+            "health_system": 0,
+            "health_storage": 0,
+            "health_software": 3,
+            "mental_state": 5,
+            "wealth": 0,
+            "cyber_sense": 2
+          }
+        }
+      ]
+    }
+  ]
+}
