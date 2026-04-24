@@ -25,7 +25,7 @@ export interface EventSchema {
 }
 
 export default function DesktopView({ onShutdown }: { onShutdown?: () => void }) {
-  const { health_status, attributes, computer, day, hidden_flags, nextDay, setPlayerState } = usePlayerStore();
+  const { health_status, attributes, computer, day, hidden_flags, nextDay, setPlayerState, markEventDone } = usePlayerStore();
   const [activeApp, setActiveApp] = useState<string | null>(null);
   const [isDark, setIsDark] = useState(true);
   const [showHardware, setShowHardware] = useState(false);
@@ -39,6 +39,7 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
   // New states for extended event logic
   const [currentEventPage, setCurrentEventPage] = useState<number>(0);
   const [nextEventObj, setNextEventObj] = useState<EventSchema | null>(null);
+  const [eventCompleted, setEventCompleted] = useState(false);
 
   const loadEvent = (event: EventSchema) => {
     setCurrentEvent(event);
@@ -52,10 +53,16 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
   };
 
   const fetchDailyEvent = async () => {
+    // If this day's event is already done (e.g. after refresh), skip fetching
+    if (usePlayerStore.getState().hidden_flags.event_done_today) {
+      setEventCompleted(true);
+      return;
+    }
     setIsEventLoading(true);
     setEventResult(null);
     setNextEventObj(null);
     setTimeoutRemaining(null);
+    setEventCompleted(false);
     try {
       const state = usePlayerStore.getState();
       const baseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, '');
@@ -303,6 +310,8 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
                     } else {
                       setEventResult(null);
                       setCurrentEvent(null);
+                      setEventCompleted(true);
+                      markEventDone();
                     }
                   }}
                   className="bg-indigo-100 hover:bg-indigo-200 dark:bg-white/10 dark:hover:bg-white/20 text-indigo-700 dark:text-white p-3 rounded-xl transition-colors text-center font-medium"
@@ -434,20 +443,21 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
       {/* FAB - Next Day */}
       <button 
         onClick={() => {
-          if (currentEvent && !eventResult) return;
+          if (!eventCompleted) return;
           setEventResult(null);
           setCurrentEvent(null);
+          setEventCompleted(false);
           nextDay();
         }}
-        disabled={currentEvent !== null && eventResult === null}
+        disabled={!eventCompleted}
         className={clsx(
           "absolute bottom-20 md:bottom-8 right-4 md:right-8 z-30 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(79,70,229,0.3)] dark:shadow-[0_0_30px_rgba(79,70,229,0.5)] transition-all duration-300",
-          (currentEvent !== null && eventResult === null) 
+          !eventCompleted 
             ? "bg-zinc-400 dark:bg-zinc-700 opacity-50 cursor-not-allowed" 
             : "bg-indigo-600 hover:bg-indigo-500 text-white hover:shadow-[0_0_40px_rgba(79,70,229,0.5)] hover:scale-110 active:scale-95 group"
         )}
       >
-        <Power size={24} className={clsx(!(currentEvent !== null && eventResult === null) && "group-hover:rotate-180 transition-transform duration-500")} />
+        <Power size={24} className={clsx(eventCompleted && "group-hover:rotate-180 transition-transform duration-500")} />
       </button>
     </div>
   );

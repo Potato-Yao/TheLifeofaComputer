@@ -20,7 +20,6 @@ class EventDispatcher:
                 prerequisites={},
                 title="平静的一天",
                 description="今天风和日丽，你的电脑安静地运行着，什么事情也没有发生。",
-                technical_context="",
                 options=[
                     {
                         "option_id": "opt_safe_1",

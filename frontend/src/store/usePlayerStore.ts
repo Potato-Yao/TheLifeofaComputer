@@ -51,6 +51,7 @@ export interface PlayerState {
     pending_repairs: any[];
     read_articles: string[];
     is_endless_mode?: boolean;
+    event_done_today?: boolean;
   };
   computer: ComputerModel | null;
 }
@@ -66,6 +67,7 @@ interface PlayerStore extends PlayerState {
   addPendingRepair: (repair: any) => void;
   joinNPA: () => void;
   markArticleRead: (id: string, gain: number) => void;
+  markEventDone: () => void;
   resetGame: (isEndless?: boolean) => void;
 }
 
@@ -168,7 +170,7 @@ export const usePlayerStore = create<PlayerStore>()(
     return { 
       day: state.day + 1,
       health_status: newHealth,
-      hidden_flags: { ...state.hidden_flags, pending_repairs: newPending }
+      hidden_flags: { ...state.hidden_flags, pending_repairs: newPending, event_done_today: false }
     };
   }),
   
@@ -217,6 +219,10 @@ export const usePlayerStore = create<PlayerStore>()(
       cyber_sense: Math.min(100, state.attributes.cyber_sense + gain),
       mental_state: Math.max(0, state.attributes.mental_state - 5)
     }
+  })),
+
+  markEventDone: () => set((state) => ({
+    hidden_flags: { ...state.hidden_flags, event_done_today: true }
   })),
 
   resetGame: (isEndless = false) => set({

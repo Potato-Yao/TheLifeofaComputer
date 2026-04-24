@@ -7,8 +7,10 @@ services:
       dockerfile: Dockerfile
       args:
         - VITE_STANDARD_MODE_DAYS=${STANDARD_MODE_DAYS:-7}
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
+    networks:
+      - web_gateway
     environment:
       - EVENTS_DIR=${EVENTS_DIR:-/app/data/events}
     env_file:
@@ -16,3 +18,7 @@ services:
     volumes:
       - ./backend/data:/app/data
     restart: unless-stopped
+
+networks:
+  web_gateway:
+    external: true # 建议先手动创建：docker network create web_gateway
