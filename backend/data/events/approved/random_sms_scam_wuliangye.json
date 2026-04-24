@@ -1,0 +1,63 @@
+{
+  "event_id": "random_sms_scam_wuliangye",
+  "event_type": "random",
+  "tags": [
+    "防诈骗",
+    "网络安全",
+    "校园生活"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "天降好事？五粮液免费领？",
+  "description": "你正在宿舍刷剧，突然收到一条短信：「恭喜您成为五粮液品鉴活动幸运用户，点击链接填写地址即可免费领取价值598元白酒一箱！」上铺的兄弟探出头：「真的假的？我也收到了！快填快填！」",
+  "technical_context": "此类短信属于典型的「中奖诈骗」：骗子利用免费赠品吸引受害者，实际需支付高额运费/税费，或通过钓鱼链接窃取个人信息。正规企业不会要求中奖者先付费，更不会索要银行卡密码等敏感信息。",
+  "options": [
+    {
+      "option_id": "opt_click",
+      "text": "点击链接填写信息",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你填写了地址后被要求支付298元「物流保价费」，付款后再也联系不上对方。室友笑你：「就知道是骗子！」",
+          "stat_changes": {
+            "money": -298,
+            "mental_state": -10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_forward",
+      "text": "转发给朋友一起领",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "朋友真的付了钱，发现被骗后和你绝交。辅导员找你谈话：「校园反诈宣传白听了？」",
+          "stat_changes": {
+            "social_credit": -20,
+            "mental_state": -15
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_report",
+      "text": "截图举报到学校反诈中心",
+      "required_cyber_sense": 5,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "学校反诈中心核实后给你发了定制U盘作为奖励，辅导员在班会上表扬了你。上铺兄弟拍着大腿：「早知道我也举报了！」",
+          "stat_changes": {
+            "mental_state": 10,
+            "cyber_sense": 5,
+            "money": 50
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "event_id": "routine_storage_full_001",
+  "event_type": "routine",
+  "tags": [
+    "存储管理",
+    "电脑知识",
+    "大学生活"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "C盘告急！你的硬盘在喊救命",
+  "description": "你正在宿舍里下载《赛博校园生存指南》的最新课件，突然弹出一个红色警告：C盘剩余空间不足1GB！室友探过头来：'兄弟，你是不是把所有游戏都装C盘了？上次我也这样，差点连作业都交不了！'",
+  "technical_context": "电脑存储分为系统盘（通常是C盘）和数据盘。系统盘空间不足会导致系统卡顿、无法安装软件甚至崩溃。临时文件（如浏览器缓存、下载残留）占比大，可通过Windows的'磁盘清理'工具清理；长期不用的文件应转移到D盘或云存储（如OneDrive）；安装软件时注意选择非系统盘路径。",
+  "options": [
+    {
+      "option_id": "opt_clean_temp",
+      "text": "立刻用系统工具清理临时文件",
+      "required_cyber_sense": 3,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你熟练地打开磁盘清理工具，勾选了所有临时文件选项。清理完成后C盘多出5GB空间，课件顺利下载！室友投来崇拜的目光：'原来你是技术大佬啊！'",
+          "stat_changes": {
+            "health_system": 10,
+            "mental_state": 5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_move_files",
+      "text": "把游戏安装包转移到D盘",
+      "required_cyber_sense": 5,
+      "outcomes": [
+        {
+          "probability": 0.8,
+          "result_text": "你成功将《赛博朋克2077》安装包转移到D盘，C盘空间恢复正常。不过过程中不小心误删了一个临时文件，导致浏览器历史记录丢失...",
+          "stat_changes": {
+            "health_system": 5,
+            "mental_state": -3
+          }
+        },
+        {
+          "probability": 0.2,
+          "result_text": "你在转移文件时操作失误，导致安装包损坏，C盘空间没变化还浪费了半小时。室友嘲笑你：'技术不行就别瞎折腾啊！'",
+          "stat_changes": {
+            "health_system": -5,
+            "mental_state": -10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_ignore",
+      "text": "先不管，继续下载课件",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "课件下载到一半失败，系统提示C盘空间不足。你不得不暂停作业，熬夜清理空间，第二天上课迟到被点名。",
+          "stat_changes": {
+            "health_system": -10,
+            "mental_state": -15,
+            "health_storage": -20
+          }
+        }
+      ]
+    }
+  ]
+}

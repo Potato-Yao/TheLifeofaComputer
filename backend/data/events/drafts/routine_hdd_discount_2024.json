@@ -1,0 +1,48 @@
+{
+  "event_id": "routine_hdd_discount_2024",
+  "event_type": "routine",
+  "tags": [
+    "硬盘选购",
+    "校园促销",
+    "电脑知识"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {},
+  "title": "图书馆门口的硬盘促销传单",
+  "description": "你抱着刚打印的高数作业路过图书馆，发现门口贴着一张醒目的促销海报：『开学季硬盘大酬宾！1TB HDD仅需299元，256GB SSD直降50元！』旁边围着几个同样在纠结的新生。你的C盘已经红得像番茄炒蛋，是时候扩容了，但钱包里的生活费也在对你眨眼...",
+  "technical_context": "硬盘选购需注意：1. HDD（机械硬盘）容量大价格低，但读写速度慢且怕震动；2. SSD（固态硬盘）速度快无噪音，但同等容量价格更高；3. 接口兼容性：SATA接口适合老电脑，NVMe接口需主板支持但速度翻倍。选购时需结合电脑型号和使用需求（如存资料选HDD，装系统选SSD）。",
+  "options": [
+    {
+      "option_id": "opt_compare",
+      "text": "先查电脑接口类型，对比参数再决定",
+      "required_cyber_sense": 10,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你打开电脑查看设备管理器，确认主板支持NVMe接口，最终选了512GB SSD。虽然多花了点钱，但系统启动速度从1分钟变成10秒，舍友都投来羡慕的目光！",
+          "stat_changes": {
+            "health_hardware": 10,
+            "health_system": 15,
+            "mental_state": 5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_cheap",
+      "text": "直接买最便宜的1TB HDD",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你抱着1TB HDD回到宿舍，把所有资料都存了进去，但系统启动和软件加载速度依然慢得像蜗牛。虽然解决了容量问题，但每次打开PS都要等三分钟，你开始后悔没多花点钱买SSD。",
+          "stat_changes": {
+            "health_hardware": 5,
+            "mental_state": -5
+          }
+        }
+      ]
+    }
+  ]
+}

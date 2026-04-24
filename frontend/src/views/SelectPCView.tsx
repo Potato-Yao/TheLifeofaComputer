@@ -13,6 +13,16 @@ const availablePCs: ComputerModel[] = [
     price_tier: 1.5,
   },
   {
+    model_id: 'TX6PRO',
+    display_name: '天选6Pro',
+    base_health_hardware: 100,
+    base_health_system: 100,
+    cooling_material: 'silicone',
+    is_memory_upgradeable: true,
+    is_apple_silicon: false,
+    price_tier: 1.1,
+  },
+  {
     model_id: 'macbook_air_m2',
     display_name: 'MacBook Air M2',
     base_health_hardware: 100,
