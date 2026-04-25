@@ -25,6 +25,7 @@ class HiddenFlags(BaseModel):
     net_assoc_trust: int = 0
     scam_counter: int = 0
     machine_flags: List[str] = []
+    seen_event_ids: List[str] = []
     history_tags: List[str] = []
     joined_npa: bool = False
     pending_repairs: List[Any] = []

@@ -34,7 +34,12 @@ if os.path.exists(dist_path):
         file_path = os.path.join(dist_path, full_path)
         if os.path.isfile(file_path):
             return FileResponse(file_path)
-        return FileResponse(os.path.join(dist_path, "index.html"))
+        
+        # Ensure index.html is never cached to prevent stale frontend code
+        return FileResponse(
+            os.path.join(dist_path, "index.html"),
+            headers={"Cache-Control": "no-store, no-cache, must-revalidate, max-age=0"}
+        )
 else:
     @app.get("/")
     def health_check():

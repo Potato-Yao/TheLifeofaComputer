@@ -105,6 +105,12 @@ class EventDispatcher:
         if "required_health_system" in p:
             if not self.evaluate_condition(p["required_health_system"], player.health_status.system):
                 return False
+        if "required_health_software" in p:
+            if not self.evaluate_condition(p["required_health_software"], player.health_status.software):
+                return False
+        if "required_health_storage" in p:
+            if not self.evaluate_condition(p["required_health_storage"], player.health_status.storage):
+                return False
                 
         if "required_item" in p:
             has_item = any(item.get("name") == p["required_item"] for item in player.inventory) if isinstance(player.inventory, list) and len(player.inventory) > 0 and isinstance(player.inventory[0], dict) else p["required_item"] in player.inventory
@@ -133,7 +139,7 @@ class EventDispatcher:
         for event in self.event_pool:
             if event.event_type != event_type:
                 continue
-            if event.is_unique and event.event_id in player.hidden_flags.history_tags:
+            if event.is_unique and event.event_id in player.hidden_flags.seen_event_ids:
                 continue
             if self.check_prerequisites(event, player):
                 candidates.append(event)
@@ -143,9 +149,16 @@ class EventDispatcher:
         for event in candidates:
             w = event.weight
             # Penalty for recently seen tags
+            match_count = 0
             for tag in event.tags:
                 if tag in player.hidden_flags.history_tags:
-                    w = int(w * 0.2)
+                    match_count += 1
+            
+            # Apply a smoother decay: weight * (0.5 ^ matching_tags_count)
+            # But cap the penalty to avoid vanishing probability
+            penalty_factor = max(0.1, 0.5 ** match_count)
+            w = int(w * penalty_factor)
+            
             weights.append(max(1, w)) # minimum weight 1
             
         # Step 4: Weighted Random Draw

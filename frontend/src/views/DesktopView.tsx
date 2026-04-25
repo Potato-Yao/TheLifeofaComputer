@@ -173,7 +173,10 @@ export default function DesktopView({ onShutdown }: { onShutdown?: () => void })
   const isLastPage = !isMultiPageEvent || currentEventPage === (currentEvent?.description as string[]).length - 1;
 
   return (
-    <div className="w-full h-full bg-zinc-200 dark:bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center relative flex flex-col md:flex-row overflow-hidden text-zinc-900 dark:text-zinc-100 transition-colors">
+    <div className="w-full h-full 
+      bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] 
+      dark:bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] 
+      bg-cover bg-center relative flex flex-col md:flex-row overflow-hidden text-zinc-900 dark:text-zinc-100 transition-colors">
       <div className="absolute inset-0 bg-white/40 dark:bg-black/60 backdrop-blur-[2px] z-0 transition-colors"></div>
 
       {/* Sidebar */}

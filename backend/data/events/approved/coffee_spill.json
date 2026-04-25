@@ -1,0 +1,54 @@
+{
+  "event_id": "evt_coffee_spill_01",
+  "event_type": "routine",
+  "tags": ["hardware_danger", "liquid"],
+  "is_unique": true,
+  "weight": 20,
+  "prerequisites": {
+    "min_day": 2
+  },
+  "title": "咖啡杯的背叛",
+  "description": "你的室友在打游戏时过于激动，一巴掌碰倒了桌上的美式咖啡。褐色的液体正顺着桌子流向你的键盘缝隙！",
+  "technical_context": "液体会导致主板短路，此时最危险的行为就是保持通电。",
+  "timeout_seconds": 5,
+  "timeout_option_id": "opt_panic",
+  "options": [
+    {
+      "option_id": "opt_force_shutdown",
+      "text": "立刻长按电源键强制关机，并拔掉电源！",
+      "required_cyber_sense": 10,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你果断的急救保住了主板！只有几个按键变得黏糊糊的。",
+          "stat_changes": {
+            "hw_shell": -5,
+            "mental_state": -10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_panic",
+      "text": "大声尖叫，拿抽纸在表面疯狂擦拭！",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.8,
+          "result_text": "在擦拭的过程中咖啡渗入了主板，你闻到了一股刺鼻的焦糊味。电脑瞬间黑屏了。",
+          "stat_changes": {
+            "hw_cpu": -80,
+            "hw_ram": -80
+          }
+        },
+        {
+          "probability": 0.2,
+          "result_text": "奇迹发生了，你的外壳防水性能不错，没有渗入主板。",
+          "stat_changes": {
+            "hw_shell": -10
+          }
+        }
+      ]
+    }
+  ]
+}

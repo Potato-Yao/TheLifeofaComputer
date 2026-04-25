@@ -255,5 +255,6 @@ export const usePlayerStore = create<PlayerStore>()(
   })
 }), { 
   name: 'cyber-survival-save',
+  version: 1, // Bumping version will ignore/clear older state
   partialize: (state) => state.hidden_flags?.is_endless_mode ? state : {} as any
 }));

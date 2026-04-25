@@ -1,5 +1,6 @@
 import { usePlayerStore } from '../store/usePlayerStore';
 import { RefreshCw } from 'lucide-react';
+import qrcode from '../assets/jiangping_qrcode.png'; 
 
 export default function GameOverView({ onRestart }: { onRestart: () => void }) {
   const { health_status } = usePlayerStore();
@@ -36,8 +37,16 @@ export default function GameOverView({ onRestart }: { onRestart: () => void }) {
           生存成功！
         </h1>
         <p className="text-zinc-400 text-lg mb-8">
-          恭喜你，在这个充满“电脑刺客”的校园里成功存活了 7 天。
+          恭喜你，在这个充满“电脑刺客”的校园里成功存活了 {import.meta.env.VITE_STANDARD_MODE_DAYS || 7} 天。
         </p>
+        <div className="mb-8 flex flex-col items-center">
+          <img 
+            src={qrcode} 
+            alt="二维码" 
+            className="w-40 h-40 rounded-lg shadow-lg border border-zinc-700"
+          />
+          <p className="text-zinc-500 text-sm mt-2">扫码领取奖品吧！</p>
+        </div>
         <button 
           onClick={handleRestart}
           className="flex items-center gap-2 mx-auto bg-indigo-600 hover:bg-indigo-700 px-8 py-4 rounded-xl transition-all font-semibold"
