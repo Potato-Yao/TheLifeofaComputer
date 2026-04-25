@@ -56,22 +56,24 @@ export function StoreApp() {
         <button onClick={() => setActiveTab('xianyu')} className={clsx("flex-1 py-1.5 text-sm font-medium rounded-md transition-all", activeTab === 'xianyu' ? "bg-white dark:bg-zinc-700 shadow-sm text-yellow-600 dark:text-yellow-500" : "text-zinc-500")}>闲鱼二手</button>
       </div>
 
-      <div className="grid gap-3 overflow-y-auto">
-        {products.map(p => (
-          <div key={p.id} className="flex items-center justify-between p-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm">
-            <div>
-              <h4 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{p.name}</h4>
-              <p className="text-[10px] text-zinc-500">使用后增加: {p.item.effects.target} +{p.item.effects.val}</p>
+      <div className="flex-1 overflow-y-auto pb-12 pr-1">
+        <div className="grid gap-3">
+          {products.map(p => (
+            <div key={p.id} className="flex items-center justify-between p-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm">
+              <div>
+                <h4 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{p.name}</h4>
+                <p className="text-[10px] text-zinc-500">使用后增加: {p.item.effects.target} +{p.item.effects.val}</p>
+              </div>
+              <button 
+                onClick={() => handleBuy(p)}
+                disabled={attributes.wealth < p.price}
+                className="px-3 py-1.5 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 disabled:opacity-50 rounded-lg transition-colors whitespace-nowrap"
+              >
+                ¥{p.price}
+              </button>
             </div>
-            <button 
-              onClick={() => handleBuy(p)}
-              disabled={attributes.wealth < p.price}
-              className="px-3 py-1.5 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 disabled:opacity-50 rounded-lg transition-colors whitespace-nowrap"
-            >
-              ¥{p.price}
-            </button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -133,7 +135,7 @@ export function RepairApp() {
         <h2 className="text-xl font-bold">维修服务网</h2>
       </div>
 
-      <div className="space-y-4 overflow-y-auto pb-6 pr-2">
+      <div className="flex-1 overflow-y-auto pb-16 pr-2 space-y-4">
         {/* NPA Services */}
         <div className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-indigo-50/50 dark:bg-indigo-900/10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
@@ -183,24 +185,26 @@ export function InventoryApp() {
   return (
     <div className="p-4 h-full flex flex-col animate-in fade-in duration-300">
       <h3 className="font-semibold flex items-center gap-2 mb-4"><Backpack size={18}/> 我的背包</h3>
-      {inventory.length === 0 ? (
-        <div className="flex-1 flex flex-col items-center justify-center text-zinc-400">
-          <Backpack size={48} className="mb-2 opacity-20" />
-          <p>背包空空如也</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 gap-3">
-          {inventory.map((item, idx) => (
-            <div key={idx} className="p-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm relative">
-              <span className={clsx("absolute top-1 right-1 text-[8px] px-1 rounded", item.quality === 'official' ? "bg-blue-100 text-blue-600" : "bg-yellow-100 text-yellow-600")}>
-                {item.quality === 'official' ? '官方' : '二手'}
-              </span>
-              <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 block mt-2">{item.name}</span>
-              <span className="text-[10px] text-zinc-400">效果: +{item.effects.val} {item.effects.target.replace('hw_', '')}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="flex-1 overflow-y-auto pb-12 pr-1">
+        {inventory.length === 0 ? (
+          <div className="h-full flex flex-col items-center justify-center text-zinc-400">
+            <Backpack size={48} className="mb-2 opacity-20" />
+            <p>背包空空如也</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3">
+            {inventory.map((item, idx) => (
+              <div key={idx} className="p-3 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm relative">
+                <span className={clsx("absolute top-1 right-1 text-[8px] px-1 rounded", item.quality === 'official' ? "bg-blue-100 text-blue-600" : "bg-yellow-100 text-yellow-600")}>
+                  {item.quality === 'official' ? '官方' : '二手'}
+                </span>
+                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 block mt-2">{item.name}</span>
+                <span className="text-[10px] text-zinc-400">效果: +{item.effects.val} {item.effects.target.replace('hw_', '')}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
