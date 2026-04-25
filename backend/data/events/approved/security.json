@@ -5,7 +5,7 @@
     "大学生活",
     "电脑知识"
   ],
-  "is_unique": false,
+  "is_unique": true,
   "weight": 100,
   "prerequisites": {},
   "title": "电脑课堂的惊喜",

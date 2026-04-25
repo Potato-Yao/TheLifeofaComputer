@@ -1,0 +1,75 @@
+{
+  "event_id": "routine_static_electricity",
+  "event_type": "routine",
+  "tags": ["硬件", "神秘故障", "诊所"],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "电脑在“发神经”",
+  "description": "你的电脑最近开始出现怪病：鼠标乱飘、键盘偶尔失灵、USB设备频繁断开。重启也没用，网上搜了一圈都说“玄学问题”。你盯着屏幕，陷入了困惑。",
+  "technical_context": "笔记本电脑长期使用后，内部可能积累静电，导致主板上的电容或接口控制器工作异常。释放静电的方法：拔掉所有外设和电源，长按电源键20-30秒。这不会损坏电脑，可以解决很多“不可名状”的硬件怪病。",
+  "options": [
+    {
+      "option_id": "opt_discharge",
+      "text": "拔掉电源和外设，长按电源键20秒释放静电",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.9,
+          "result_text": "重新开机后，鼠标不飘了，键盘也正常了。原来静电真的是凶手！",
+          "stat_changes": {
+            "health_system": 15,
+            "health_hardware": 10,
+            "mental_state": 15
+          }
+        },
+        {
+          "probability": 0.1,
+          "result_text": "长按电源键后电脑彻底不开机了……你慌了。送去维修才发现是主板恰巧在这时候坏了，跟放电无关。但你还是花了300块。",
+          "stat_changes": {
+            "health_hardware": -10,
+            "health_system": -30,
+            "mental_state": -25,
+            "wealth": -300
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_clinic",
+      "text": "求助电脑诊所",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "诊所同学一听症状，直接拔电长按电源键20秒。再开机，一切恢复正常。你学会了这招，还省了检测费。",
+          "stat_changes": {
+            "health_system": 10,
+            "health_hardware": 10,
+            "mental_state": 10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_ignore",
+      "text": "无视，继续用，反正还能凑合",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你忍了一周，问题越来越严重，最后USB接口彻底失灵，连鼠标都用不了。你不得不外接一个扩展卡。",
+          "stat_changes": {
+            "health_system": -20,
+            "health_hardware": -20,
+            "mental_state": -15,
+            "wealth": -80
+          }
+        }
+      ]
+    }
+  ]
+}

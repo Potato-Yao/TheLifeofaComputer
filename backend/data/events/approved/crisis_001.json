@@ -1,0 +1,92 @@
+{
+  "event_id": "crisis_001",
+  "event_type": "crisis",
+  "tags": [
+    "电脑故障",
+    "紧急事件",
+    "开机问题"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "笔记本电脑开不了机了！",
+  "description": "你想起自己有些文件存储在另一台老电脑上，于是将其找出。经过一个夏天的放置，电脑像是进入了冬眠，一按开机键却只听见沉默。屏幕黑得像清晨的校园，眼前似乎只有你和一成不变的绝望。",
+  "technical_context": "长时间未使用的电脑可能会因为电池耗尽或硬件老化导致无法开机。电池如果长时间不充电可能会失去充电能力，造成开机失败。",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "找电脑诊所",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.8,
+          "result_text": "诊所的同学耐心检查后，发现电池只是没电了，轻松为你充电后电脑恢复正常，你的心情也随之明亮。 ",
+          "stat_changes": {
+            "mental_state": 5
+          }
+        },
+        {
+          "probability": 0.2,
+          "result_text": "检查后，发现主板出现问题，需要更换，费用不菲，虽然电脑修好了，但钱包大出血。",
+          "stat_changes": {
+            "health_hardware": -10,
+            "mental_state": -5,
+            "wealth": -500,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "找学服 ",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.5,
+          "result_text": "学服检查后，告诉你需要更换电池，花费不小，但电脑恢复正常，心里却别扭地觉得被坑了。",
+          "stat_changes": {
+            "mental_state": -3,
+            "wealth": -400
+          }
+        },
+        {
+          "probability": 0.5,
+          "result_text": "学服的维修师傅竟然把问题搞得更复杂，最终让你不得不掏出更多的钱去进行重装，心情跌至谷底。",
+          "stat_changes": {
+            "health_system": -10,
+            "health_software": -10,
+            "mental_state": -10,
+            "wealth": -800
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_3",
+      "text": "先充一会儿电试试？",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.6,
+          "result_text": "你充了二十分钟电，发现竟然能开机了！",
+          "stat_changes": {
+            "mental_state": 10
+          }
+        },
+        {
+          "probability": 0.4,
+          "result_text": "充电后依旧毫无反应，你只能把电脑拿去诊所维修，结果被告知是主板出问题了。",
+          "stat_changes": {
+            "health_hardware": -15,
+            "mental_state": -8,
+            "wealth": -500
+          }
+        }
+      ]
+    }
+  ]
+}

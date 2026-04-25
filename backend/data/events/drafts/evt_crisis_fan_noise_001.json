@@ -1,0 +1,94 @@
+{
+  "event_id": "evt_crisis_fan_noise_001",
+  "event_type": "crisis",
+  "tags": [
+    "硬件故障",
+    "风扇问题",
+    "游戏场景",
+    "校园生活"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 1
+  },
+  "title": "游戏激战中，风扇突然'暴走'？",
+  "description": "你正窝在宿舍床上用笔记本玩《三角洲行动》，刚冲进敌方阵地准备扔雷，突然听到一阵尖锐的'呜呜'声——笔记本风扇像疯了一样狂转，噪音大到连耳机里的枪声都盖不住。上铺的室友探出头：'喂，你电脑要起飞了？再吵我举报你用吹风机吹头发！'",
+  "technical_context": "风扇异响通常由三种原因导致：1. 灰尘堵塞散热片，导致CPU/GPU温度过高，风扇被迫满载运行；2. 风扇轴承磨损或缺油，转动时产生摩擦噪音；3. 散热模组螺丝松动，风扇运转时发生共振。游戏场景下CPU/GPU高负载会加剧这些问题，长期忽视可能导致硬件过热损坏。",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "立即关机，拆开后盖清理灰尘（需要螺丝刀）",
+      "required_cyber_sense": 20,
+      "outcomes": [
+        {
+          "probability": 0.7,
+          "result_text": "你熟练地拆开后盖，发现散热片上积了半厘米厚的灰尘。用旧牙刷清理后，风扇噪音消失，电脑温度骤降。室友对你竖起大拇指：'不愧是赛博校园的硬件大神！'",
+          "stat_changes": {
+            "hw_fan": 20,
+            "health_system": 15,
+            "cyber_sense": 5
+          }
+        },
+        {
+          "probability": 0.3,
+          "result_text": "拆后盖时不小心碰掉了一根排线，电脑直接黑屏。你只好抱着电脑去校外维修店，花了50块才修好。",
+          "stat_changes": {
+            "wealth": -50,
+            "mental_state": -10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "继续玩游戏，忍忍就过去了",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.8,
+          "result_text": "你硬着头皮继续游戏，但风扇噪音越来越大，最后电脑突然蓝屏。重启后发现CPU温度过高导致性能下降，游戏帧率暴跌。",
+          "stat_changes": {
+            "health_system": -10,
+            "hw_fan": -5,
+            "mental_state": -5
+          }
+        },
+        {
+          "probability": 0.2,
+          "result_text": "风扇突然停转，电脑瞬间黑屏。送到维修店检查发现风扇烧毁，更换花了80元。",
+          "stat_changes": {
+            "wealth": -80,
+            "hw_fan": -20,
+            "mental_state": -15
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_3",
+      "text": "用湿纸巾擦拭笔记本表面降温",
+      "required_cyber_sense": 5,
+      "outcomes": [
+        {
+          "probability": 0.6,
+          "result_text": "湿纸巾水分渗入键盘缝隙，导致主板短路。你不得不支付120元维修费用，还被室友嘲笑'物理降温大师'。",
+          "stat_changes": {
+            "wealth": -120,
+            "health_system": -20,
+            "mental_state": -10
+          }
+        },
+        {
+          "probability": 0.4,
+          "result_text": "暂时降低了表面温度，但内部散热问题没解决，风扇噪音依旧。游戏体验大打折扣。",
+          "stat_changes": {
+            "mental_state": -5
+          }
+        }
+      ]
+    }
+  ],
+  "timeout_seconds": 10,
+  "timeout_option_id": "opt_2"
+}

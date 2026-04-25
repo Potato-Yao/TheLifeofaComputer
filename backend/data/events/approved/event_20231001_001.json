@@ -1,0 +1,60 @@
+{
+  "event_id": "event_20231001_001",
+  "event_type": "routine",
+  "tags": [
+    "充电器",
+    "校园生活"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "max_day": 8
+  },
+  "title": "失踪的充电器与充电宝的救赎",
+  "description": "一天晚上，正在准备明天的实验报告时，你突然发现充电器不翼而飞！无奈之下，你只好借助充电宝为电脑供电。看着电量缓慢减少的电量条，你心中不禁暗想：用充电宝给笔记本充电，究竟有什么需要注意的呢？",
+  "technical_context": "充电宝中的电池一般是锂电池，输出电压和电流需与笔记本匹配，否则可能导致设备损坏。使用不合适的充电宝可能会影响充电效率，甚至造成短路。",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "尝试用充电宝给电脑充电，看看能不能坚持到明天。",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.8,
+          "result_text": "充电宝成功为电脑供电，虽然充电速度缓慢，但你终于完成了报告！",
+          "stat_changes": {
+            "mental_state": 2
+          }
+        },
+        {
+          "probability": 0.2,
+          "result_text": "充电宝的电量耗尽得太快，电脑没能撑到明天，报告未完成，心情大受打击。",
+          "stat_changes": {
+            "mental_state": -3
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "决定放弃用充电宝，去找室友借充电器。",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.9,
+          "result_text": "室友乐意借出充电器，你顺利借到了，报告也顺利完成！",
+          "stat_changes": {
+            "mental_state": 3
+          }
+        },
+        {
+          "probability": 0.1,
+          "result_text": "室友出门了，没能借到充电器，你只好继续使用充电宝，但电量不够，报告又延迟了。",
+          "stat_changes": {
+            "mental_state": -2
+          }
+        }
+      ]
+    }
+  ]
+}

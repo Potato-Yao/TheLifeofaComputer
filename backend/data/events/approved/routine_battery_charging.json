@@ -1,0 +1,65 @@
+{
+  "event_id": "routine_battery_charging_001",
+  "event_type": "routine",
+  "tags": [
+    "电池",
+    "使用习惯",
+    "硬件保养"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "满电三小时的纠结",
+  "description": "你的电脑已经插着电源、电量100%维持了三个小时。你瞅着那个绿灯，心里犯嘀咕：要不要拔掉？",
+  "technical_context": "锂电池长期处于100%满电状态会加速正极材料老化，导致电池容量衰减。现代笔记本大多支持“充电阈值”功能（如联想养护模式、华硕电池健康充电），将充电限制在60%-80%可大幅延长电池寿命。如果长期插电使用，建议开启养护模式，不要一直满电。",
+  "options": [
+    {
+      "option_id": "opt_unplug_only",
+      "text": "只拔掉插头，用电池供电",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你拔了插头，开始消耗电池电量。虽然避免了长期满电，但今天你可能还得再充一次电。没啥大毛病。",
+          "stat_changes": {
+            "health_hardware": 5,
+            "mental_state": 2
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_keep_plugged",
+      "text": "不拔，反正插着方便",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你决定不管它。三个月后你发现电池健康度掉到了85%，充满电只能用原来的一半时间。你后悔没早点拔。",
+          "stat_changes": {
+            "health_hardware": -20,
+            "mental_state": -5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_unplug_and_conserve",
+      "text": "拔掉插头，并且进软件开启养护模式（充电限到80%）",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你花了半分钟在品牌管家软件里找到了电池养护模式。从此电脑充电到80%就停止，电池寿命大大延长。室友惊了：“还有这种操作？”",
+          "stat_changes": {
+            "health_system": 10,
+            "mental_state": 10
+          }
+        }
+      ]
+    }
+  ]
+}

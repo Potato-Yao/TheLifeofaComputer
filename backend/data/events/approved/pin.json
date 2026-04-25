@@ -1,0 +1,53 @@
+{
+  "event_id": "event_123456789",
+  "event_type": "routine",
+  "tags": [
+    "校园生活",
+    "电脑知识"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "max_day": 10
+  },
+  "title": "PIN码失灵的烦恼",
+  "description": "你正在忙着写论文，突然发现自己的电脑忘记了PIN码！你脑海中浮现出昨天的疯狂夜晚，难道是因为熬夜太久？你决定解决这个问题，再也不想被电脑拒之门外。",
+  "technical_context": "PIN码（个人识别码）是保护你设备的重要防线。如果忘记了PIN码，尝试重置和恢复通常是最安全的选择，确保不会丢失数据。",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "尝试回忆并输入 PIN 码",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.3,
+          "result_text": "你灵光一闪，成功输入了PIN码，电脑顺利解锁，继续完成论文！",
+          "stat_changes": {
+            "mental_state": 5
+          }
+        },
+        {
+          "probability": 0.7,
+          "result_text": "经过几次尝试，电脑锁定了你，表示你需要重置PIN码，并等待重启，浪费了宝贵的时间。",
+          "stat_changes": {
+            "mental_state": -5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "重置 PIN 码",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "重置过程顺利完成，你学到了如何安全设置PIN码，今后就不怕忘记了！",
+          "stat_changes": {
+            "mental_state": 3
+          }
+        }
+      ]
+    }
+  ]
+}

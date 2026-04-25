@@ -1,0 +1,83 @@
+{
+  "event_id": "routine_download_fake_website",
+  "event_type": "routine",
+  "tags": [
+    "网络安全",
+    "软件下载",
+    "防诈骗"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 8,
+    "max_day": 13
+  },
+  "title": "BIT101的迷魂阵",
+  "description": "你听说大家都在用一款软件「BIT101」，决定也下一个。打开搜索引擎，输入“BIT101 下载”，你点开：",
+  "technical_context": "很多流氓软件和盗版网站会伪装成正规官网，利用相似域名（如把‘o’换成‘0’、‘l’换成‘1’）或跳转广告诱导下载。下载后轻则捆绑全家桶，重则感染木马或收费。正确做法：确认官网域名，看清是否为官方认证，尽量从官方应用商店或可信源下载。",
+  "options": [
+    {
+      "option_id": "opt_fake_url_1",
+      "text": "点击「https://andoid.bit1O1.cn/」",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你点进去，页面跟真的一模一样。下载安装后电脑开始疯狂弹窗，桌面多了「传奇霸业」和「2345全家桶」。",
+          "stat_changes": {
+            "health_system": -30,
+            "health_storage": -20,
+            "health_hardware": -10,
+            "mental_state": -25,
+            "wealth": -50
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_fake_url_2",
+      "text": "点击「https://android.bit1O1.cn/」",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "页面提示「下载BIT101需支付50元激活码」。你扫码付款后得到一个压缩包，解压一看是个空壳程序。客服早已消失。",
+          "stat_changes": {
+            "wealth": -50,
+            "mental_state": -30
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_npa_website",
+      "text": "点击「https://www.bitnp.net/#/」",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "咦，这是网协的官网！虽然没找到BIT101，但你发现了网协提供的知识库和电脑推荐表，收获颇丰。",
+          "stat_changes": {
+            "mental_state": 10,
+            "health_system": 5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_correct_url",
+      "text": "点击「https://android.bit101.cn/」",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "这是真正的BIT101官方下载页。你顺利下载到纯净版，安装后爱不释手。",
+          "stat_changes": {
+            "mental_state": 15,
+            "health_system": 5
+          }
+        }
+      ]
+    }
+  ]
+}

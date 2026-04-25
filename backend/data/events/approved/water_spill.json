@@ -1,0 +1,64 @@
+[
+  {
+    "event_id": "evt_routine_103",
+    "event_type": "routine",
+    "tags": ["dormitory", "hardware"],
+    "is_unique": false,
+    "weight": 100,
+    "prerequisites": {
+      "min_day": 14
+    },
+    "title": "桌上的肥宅快乐水",
+    "description": "你在键盘旁边放了一杯冰镇可乐。室友路过时动作太大了，桌面一阵晃动，可乐摇摇欲坠！",
+    "technical_context": "液体是电子产品的头号杀手。一旦进水，不仅可能短路烧毁主板，含糖饮料干涸后还会腐蚀电路板。",
+    "timeout_seconds": 3,
+    "timeout_option_id": "opt_panic",
+    "options": [
+      {
+        "option_id": "opt_103_1",
+        "text": "用单身十八年的手速去扶杯子",
+        "required_cyber_sense": 0,
+        "outcomes": [
+          {
+            "probability": 1,
+            "result_text": "你成功地抓住了杯子，只洒出了几滴在键盘上，还好没什么大碍。",
+            "stat_changes": {
+              "health_hardware": -5,
+              "mental_state": 5
+            }
+          }
+        ]
+      },
+      {
+        "option_id": "opt_103_2",
+        "text": "大喊一声提醒室友",
+        "required_cyber_sense": 0,
+        "outcomes": [
+          {
+            "probability": 1.0,
+            "result_text": "室友眼疾手快抓住了杯子，并表示为了赔罪请你吃一顿饭。",
+            "stat_changes": {
+              "wealth": 20,
+              "mental_state": 10
+            }
+          }
+        ]
+      },
+      {
+        "option_id": "opt_panic",
+        "text": "愣住",
+        "required_cyber_sense": 0,
+        "outcomes": [
+          {
+            "probability": 1,
+            "result_text": "你的手速慢了一拍，可乐直接倒在了键盘和主板上！电脑发出嘶嘶声后彻底死机。",
+            "stat_changes": {
+              "health_hardware": -50,
+              "mental_state": -20
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

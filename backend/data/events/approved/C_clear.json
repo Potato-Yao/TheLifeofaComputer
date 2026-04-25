@@ -6,7 +6,7 @@
     "大一生活",
     "存储管理"
   ],
-  "is_unique": false,
+  "is_unique": true,
   "weight": 100,
   "prerequisites": {},
   "title": "C盘快撑爆了，电脑卡卡的！",

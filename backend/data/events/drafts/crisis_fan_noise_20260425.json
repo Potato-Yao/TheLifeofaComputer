@@ -1,0 +1,57 @@
+{
+  "event_id": "crisis_fan_noise_20260425",
+  "event_type": "crisis",
+  "tags": [
+    "硬件故障",
+    "风扇异响",
+    "游戏场景",
+    "校园生活"
+  ],
+  "is_unique": false,
+  "weight": 120,
+  "prerequisites": {
+    "min_day": 3,
+    "min_wealth": 500,
+    "required_health_hardware": "<= 70"
+  },
+  "title": "三角洲激战中，风扇突然'咆哮'？！",
+  "description": "你正窝在宿舍床上用游戏本肝《三角洲行动》的排位赛，突然听到电脑底部传来一阵尖锐的'呜呜'声——风扇转速瞬间拉满，噪音大到连隔壁床的室友都探出头骂：'喂！你这电脑是要起飞吗？'屏幕上的游戏画面开始卡顿，键盘左侧区域烫得能煎鸡蛋...",
+  "technical_context": "游戏运行时CPU/GPU负载激增，散热系统需高速运转维持硬件温度。若风扇叶片积尘过多、轴承磨损或散热鳍片堵塞，会导致气流紊乱产生异响。长期高负载运转可能引发硬件过热保护，甚至缩短硬件寿命。",
+  "options": [
+    {
+      "option_id": "opt_shut_down",
+      "text": "立即关机，拆开后盖清理风扇灰尘（需要基础电脑知识）",
+      "required_cyber_sense": 20,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你熟练地拆开后盖，用毛刷清理了风扇叶片和散热鳍片上的灰尘。重新开机后噪音消失，游戏运行流畅。室友投来崇拜的目光：'没想到你还是个技术宅啊！'",
+          "stat_changes": {
+            "health_system": 15,
+            "cyber_sense": 5
+          },
+          "next_event_id": ""
+        }
+      ]
+    },
+    {
+      "option_id": "opt_continue_play",
+      "text": "不管噪音继续玩，反正快赢了",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你硬着头皮继续游戏，但风扇的怪响越来越刺耳，突然屏幕闪过一道蓝线后直接黑屏！室友拍着床板大喊：'你这破电脑要炸了啊！'第二天送去维修，师傅说散热鳍片完全堵死导致CPU过热，换风扇加清灰花了200块，你这个月的泡面钱又少了一半。",
+          "stat_changes": {
+            "health_system": -15,
+            "mental_state": -8,
+            "wealth": -200
+          },
+          "next_event_id": ""
+        }
+      ]
+    }
+  ],
+  "timeout_seconds": 10,
+  "timeout_option_id": "opt_shut_down"
+}

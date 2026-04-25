@@ -1,0 +1,55 @@
+[
+  {
+    "event_id": "evt_routine_102",
+    "event_type": "routine",
+    "tags": ["update", "software"],
+    "is_unique": false,
+    "weight": 100,
+    "prerequisites": {
+      "min_day": 6,
+      "max_day": 13
+    },
+    "title": "强制的系统更新",
+    "description": "正当你准备和朋友开黑打游戏时，Windows 突然弹出一个充满压迫感的蓝色全屏提示：“正在配置更新，请勿关闭计算机”。",
+    "technical_context": "Windows 强制更新经常在不合时宜的时候出现，如果在更新期间强行关机，极易导致系统崩溃无法引导。",
+    "options": [
+      {
+        "option_id": "opt_102_1",
+        "text": "老实等待更新完成",
+        "required_cyber_sense": 0,
+        "outcomes": [
+          {
+            "probability": 1.0,
+            "result_text": "你等了整整半个小时，朋友们早就开局了。虽然很生气，但电脑系统得到了安全补丁。",
+            "stat_changes": {
+              "mental_state": -10,
+              "health_software": 10
+            }
+          }
+        ]
+      },
+      {
+        "option_id": "opt_102_2",
+        "text": "长按电源键强行关机！",
+        "required_cyber_sense": 0,
+        "outcomes": [
+          {
+            "probability": 0.4,
+            "result_text": "再开机时一切正常，你侥幸逃过一劫，成功赶上游戏。",
+            "stat_changes": {
+              "mental_state": 10
+            }
+          },
+          {
+            "probability": 0.6,
+            "result_text": "再次开机时直接蓝屏，显示 INACCESSIBLE_BOOT_DEVICE，系统彻底崩溃！",
+            "stat_changes": {
+              "health_system": -50,
+              "mental_state": -30
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

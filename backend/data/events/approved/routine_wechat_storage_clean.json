@@ -1,0 +1,78 @@
+{
+  "event_id": "routine_wechat_storage_clean",
+  "event_type": "routine",
+  "tags": [
+    "存储管理",
+    "软件设置",
+    "微信"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "微信的60G秘密",
+  "description": "你偶然看了一眼电脑存储，发现微信竟然吃掉了整整60GB！你心里一惊：我平时也没干嘛啊，怎么这么大？室友探过头：“我也一样，这玩意到底存了啥？”",
+  "technical_context": "微信PC版默认开启“自动下载”功能，群聊中的图片、视频、文件会自动下载到电脑，且长期不清理。这些文件保存在「WeChat Files」文件夹中。解决方法：在微信设置中关闭“自动下载”，然后手动清理缓存、文件、聊天记录。聊天记录删除前请备份，因为不可恢复。",
+  "options": [
+    {
+      "option_id": "opt_clear_cache",
+      "text": "清除缓存",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你打开微信设置，点了“清空缓存”。释放了10GB空间，但微信依然臃肿。",
+          "stat_changes": {
+            "health_storage": 0,
+            "mental_state": 5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_delete_files",
+      "text": "删除聊天文件",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你找到文件管理，删除了所有图片和视频。释放了40GB，但真的结束了吗……",
+          "stat_changes": {
+            "health_storage": 5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_delete_all_chats",
+      "text": "把聊天记录也扬了！",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你大手一挥，删除了所有聊天记录，微信瞬间瘦回5GB。回忆什么的就留给手机查看吧！（但真的结束了吗……）",
+          "stat_changes": {
+            "health_storage": 10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_auto_download",
+      "text": "等等，自动下载是什么？",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你研究半天，在微信设置里找到了“自动下载”开关，果断关闭。从今以后文件不再自动下载，你定期手动清理，C盘再也没红过。",
+          "stat_changes": {
+            "health_storage": 20,
+            "mental_state": 10
+          }
+        }
+      ]
+    }
+  ]
+}

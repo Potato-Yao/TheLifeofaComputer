@@ -1,0 +1,46 @@
+[
+  {
+    "event_id": "evt_routine_104",
+    "event_type": "routine",
+    "tags": ["scam", "wealth"],
+    "is_unique": false,
+    "weight": 100,
+    "prerequisites": {
+      "max_day": 8
+    },
+    "title": "闲鱼“女大学生”自用九成新",
+    "description": "你在闲鱼上看到一个声称“自用九成新，急用钱血本抛售”的顶级外星人笔记本。价格只有原价的十分之一！对方表示只支持线下面交或者微信直接转账。",
+    "technical_context": "二手市场水很深。价格过低且脱离平台交易的，100%是骗子（常见的如：假装女大学生、货不对板、面交诈骗）。",
+    "options": [
+      {
+        "option_id": "opt_r101_1",
+        "text": "毫不犹豫，微信转账！",
+        "required_cyber_sense": 0,
+        "outcomes": [
+          {
+            "probability": 1.0,
+            "result_text": "你转账后立刻被对方拉黑。你不但失去了几千块生活费，还在室友面前丢尽了脸。",
+            "stat_changes": {
+              "wealth": -500,
+              "mental_state": -30
+            }
+          }
+        ]
+      },
+      {
+        "option_id": "opt_r101_2",
+        "text": "向网协群里的大佬求证",
+        "required_cyber_sense": 0,
+        "outcomes": [
+          {
+            "probability": 1.0,
+            "result_text": "网协大佬看了一眼商品图，立刻指出这图片是盗用的，并且教你识别了这种经典骗局。你保住了钱，还学到了知识。",
+            "stat_changes": {
+              "mental_state": 10
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

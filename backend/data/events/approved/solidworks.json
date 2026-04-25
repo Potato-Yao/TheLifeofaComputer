@@ -6,7 +6,7 @@
     "Solidworks",
     "工程设计"
   ],
-  "is_unique": false,
+  "is_unique": true,
   "weight": 100,
   "prerequisites": {},
   "title": "Solidworks装不明白",

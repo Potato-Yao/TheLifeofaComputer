@@ -1,0 +1,67 @@
+{
+  "event_id": "routine_overload_crash_001",
+  "event_type": "routine",
+  "tags": [
+    "使用习惯",
+    "性能管理",
+    "软件"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "压死骆驼的最后一个Matlab",
+  "description": "你的电脑上同时挂着腾讯会议和Solidworks，后台还蹲着微信、QQ、剪映专业版和网易云音乐。风扇已经开始咆哮，这时你准备点开Matlab…",
+  "technical_context": "同时运行过多大型软件会导致内存不足、CPU过载，系统容易卡死或崩溃。更关键的是，很多学生习惯“点X关窗口”却不退出后台程序（比如网易云、微信），导致资源持续占用。正确做法：彻底退出不用的软件（右键系统托盘图标“退出”），或打开任务管理器结束进程。",
+  "options": [
+    {
+      "option_id": "opt_close_some",
+      "text": "关掉！都关掉！（持续点击X号）",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "风扇变得安静了一些，但不多。好在Matlab终究还是打开了。",
+          "stat_changes": {
+            "health_system": -10,
+            "health_hardware": -5,
+            "mental_state": -2
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_just_open",
+      "text": "不管！直接打开Matlab",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "Matlab刚弹出启动画面，屏幕就卡死了。接着蓝屏重启，无限转圈——系统彻底炸了。“我的公选课作业还没保存——”哀嚎声在宿舍里回荡。",
+          "stat_changes": {
+            "health_system": -50,
+            "health_hardware": -30,
+            "mental_state": -40,
+            "wealth": -150
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_close_some",
+      "text": "真的都关掉了吗？",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你将后台运行的软件也全部关闭，Matlab启动无比丝滑！",
+          "stat_changes": {
+            "mental_state": 5
+          }
+        }
+      ]
+    }
+  ]
+}

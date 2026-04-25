@@ -1,0 +1,59 @@
+{
+  "event_id": "routine_ubuntu_dual_boot",
+  "event_type": "routine",
+  "tags": [
+    "软件",
+    "系统安装",
+    "Linux"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "双系统的诱惑",
+  "description": "你听说Linux搞开发很爽，决定在笔记本上安装Ubuntu双系统。看着网上的教程，你陷入了沉思：是相信自己，还是抱大腿？",
+  "technical_context": "安装双系统需要制作启动U盘、分区、关闭安全启动等操作。新手容易误删原有系统引导或分区，导致Windows无法启动。建议先用虚拟机练习，或找有经验的同学指导。",
+  "options": [
+    {
+      "option_id": "opt_diy",
+      "text": "自己动手，丰衣足食",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.5,
+          "result_text": "你严格按照教程操作，一次成功！重启后看到GRUB菜单，成就感爆棚。",
+          "stat_changes": {
+            "health_system": 5,
+            "mental_state": 15
+          }
+        },
+        {
+          "probability": 0.5,
+          "result_text": "你做的启动U盘怎么也引导不了，查了半天发现是镜像写错了。折腾三小时，心态崩了。",
+          "stat_changes": {
+            "mental_state": -20,
+            "health_system": -10,
+            "wealth": -10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_clinic",
+      "text": "求助电脑诊所",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "诊所大佬掏出U盘，十分钟帮你装好双系统，还教你怎么切换。",
+          "stat_changes": {
+            "health_system": 15,
+            "mental_state": 10
+          }
+        }
+      ]
+    }
+  ]
+}

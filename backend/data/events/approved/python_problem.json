@@ -1,0 +1,65 @@
+{
+  "event_id": "evt_20231010_python_conflict",
+  "event_type": "routine",
+  "tags": [
+    "python",
+    "版本冲突",
+    "咨询"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "与Python版本的亲密接触",
+  "description": "在一次愉快的编程课后，你发现你的Python环境中出现了版本冲突，搞得你无从下手。",
+  "technical_context": "Python版本冲突通常是由于不同项目要求不同版本的Python库引起的。解决这个问题的关键在于使用虚拟环境（如venv或conda），这样能在不同项目间创建隔离的Python环境，互不干扰。",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "请教电脑诊所的同学，希望他能帮你解决问题。",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.7,
+          "result_text": "同学耐心地教你如何使用虚拟环境，问题得以解决。你的代码顺利运行，信心倍增！",
+          "stat_changes": {
+            "health_software": 5,
+            "mental_state": 5
+          }
+        },
+        {
+          "probability": 0.3,
+          "result_text": "同学虽然热情，但对你的问题理解不深，最后只给你讲了一大堆概念，你还是没能解决问题。",
+          "stat_changes": {
+            "mental_state": -3
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "上网查资料，自己动手解决。",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.6,
+          "result_text": "经过一番调查和尝试，你成功创建了虚拟环境，冲突问题迎刃而解。你感到无比自豪！",
+          "stat_changes": {
+            "health_software": 5,
+            "mental_state": 7
+          }
+        },
+        {
+          "probability": 0.4,
+          "result_text": "虽然你查了很多资料，但还是没能搞明白，最后不得不求助同学，浪费了一些时间。",
+          "stat_changes": {
+            "health_software": 1,
+            "mental_state": -2
+          }
+        }
+      ]
+    }
+  ]
+}

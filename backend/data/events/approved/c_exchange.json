@@ -1,0 +1,75 @@
+{
+  "event_id": "crisis_001",
+  "event_type": "crisis",
+  "tags": [
+    "摔跤",
+    "电脑故障",
+    "转轴碎了",
+    "C壳更换"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "背着电脑摔了一跤，转轴碎了！",
+  "description": "在追赶上课的路上，你不小心摔了一跤，背上的电脑发出了一声清脆的破裂声。你低头一看，转轴碎了，C壳也凹进去了一块。",
+  "technical_context": "转轴是连接屏幕与主机的重要部件，其损坏会影响到电脑的使用体验，严重时可能导致屏幕无法正常开启。更换C壳需要专业的工具和技术，建议在选择修理方式时多加考虑。",
+  "options": [
+    {
+      "option_id": "opt_1",
+      "text": "找电脑诊所修理",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1,
+          "result_text": "诊所的同学们很快帮你修好了电脑，不仅更换了转轴，还让你学到了不少关于电脑组装的知识！",
+          "stat_changes": {
+            "mental_state": 5,
+            "wealth": -2
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_2",
+      "text": "找学服修理",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1,
+          "result_text": "虽然修好了电脑，但修理费用让你心疼，钱包瘪了一大块。",
+          "stat_changes": {
+            "mental_state": -5,
+            "wealth": -300,
+            "cyber_sense": 0
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_3",
+      "text": "自己修理",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.4,
+          "result_text": "经过一番努力和网上教程，你成功更换了C壳，虽然过程艰辛，但你获得了巨大的成就感！",
+          "stat_changes": {
+            "mental_state": 10
+          }
+        },
+        {
+          "probability": 0.6,
+          "result_text": "不幸的是，你在修理过程中不小心把其他部件也搞坏了，最终还是得去修理店修理，真是得不偿失。",
+          "stat_changes": {
+            "health_hardware": -50,
+            "mental_state": -10,
+            "wealth": -400
+          }
+        }
+      ]
+    }
+  ]
+}

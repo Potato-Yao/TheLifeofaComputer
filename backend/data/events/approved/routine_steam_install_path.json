@@ -1,0 +1,50 @@
+{
+  "event_id": "routine_steam_install_path",
+  "event_type": "routine",
+  "tags": [
+    "存储管理",
+    "软件安装",
+    "游戏"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "max_day": 8
+  },
+  "title": "40GB的庞然大物",
+  "description": "你在Steam上剁手了一款期待已久的大作，大小40多GB。点击“安装”时，默认路径是C盘。你瞥了一眼C盘剩余空间，好像装得下。",
+  "technical_context": "C盘通常是系统盘，保留空间用于虚拟内存、临时文件和系统更新。将大型游戏或软件装进C盘容易导致C盘爆满，系统变慢、无法更新甚至崩溃。建议将非必要软件安装到D盘或其它数据盘，既保护系统性能，也方便日后重装系统时不丢失数据。",
+  "options": [
+    {
+      "option_id": "opt_install_c",
+      "text": "直接安装！我磁盘空间大得很",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "没过几天系统弹出「磁盘空间不足」，电脑卡成PPT，连微信都打不开。你不得不花一晚上清理C盘。",
+          "stat_changes": {
+            "health_storage": -25,
+            "health_system": -15,
+            "mental_state": -15
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_install_d",
+      "text": "将安装路径从C盘改到D盘",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你点开浏览，选择了D盘一个新建的「GameLibrary」文件夹。游戏顺利安装，C盘空间依然充裕。",
+          "stat_changes": {
+            "health_storage": 10,
+            "mental_state": 5
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "event_id": "routine_overheat_backpack",
+  "event_type": "routine",
+  "tags": [
+    "散热",
+    "使用习惯",
+    "校园生活"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "归心似箭的代价",
+  "description": "最后一节课，你刚用电脑跑完模型，准备回宿舍享受夜晚。电脑风扇还在呼呼转，机身温热。你犹豫：是立刻装包走人，还是等它冷静一会儿？",
+  "technical_context": "笔记本刚运行完高负载任务时，内部温度较高，散热模组还在工作。如果立刻塞进背包（尤其是隔热性好的书包），热空气无法排出，可能导致电池过热保护锁死、CPU降频甚至加速老化。正确做法是等待几分钟，待风扇停转或温度下降后再装包。",
+  "options": [
+    {
+      "option_id": "opt_pack_immediately",
+      "text": "归心似箭！立刻装进书包走人",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你在路上遇到同学，聊得热火朝天。回到宿舍一摸电脑——烫得像暖手宝！无法开机。好在冷却半小时后它又复活了，但电池的健康度已经悄悄下滑。",
+          "stat_changes": {
+            "health_hardware": -20,
+            "health_system": -10,
+            "mental_state": -5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_wait",
+      "text": "不急，等温度降下来再走",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你刷了五分钟手机，等风扇彻底安静后才把电脑装进书包。回到宿舍一切正常，室友还夸你懂得保养。",
+          "stat_changes": {
+            "mental_state": 5
+          }
+        }
+      ]
+    }
+  ]
+}

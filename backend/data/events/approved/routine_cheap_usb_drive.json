@@ -1,0 +1,76 @@
+{
+  "event_id": "routine_cheap_usb_drive",
+  "event_type": "routine",
+  "tags": [
+    "U盘",
+    "硬件",
+    "数据安全"
+  ],
+  "is_unique": false,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 6,
+    "max_day": 13
+  },
+  "title": "天降U盘",
+  "description": "你在校外活动抽奖中了一个U盘，非常高兴。",
+  "technical_context": "劣质U盘常通过虚标容量（如实际只有8GB但显示64GB）、使用黑片闪存、主控劣质等方式降低成本。写入速度极慢，数据极易损坏或丢失。建议从正规渠道购买品牌U盘，并定期备份重要文件。",
+  "options": [
+    {
+      "option_id": "opt_buy_cheap",
+      "text": "正好缺U盘拷贝课堂展示的PPT！",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.6,
+          "result_text": "前两天拷贝文件，一切都看起来很正常。直到课堂展示当天，你发现U盘里的文件全部损坏，被扣平时分，追悔莫及。",
+          "stat_changes": {
+            "health_storage": -20,
+            "mental_state": -30,
+            "health_system": -5
+          }
+        },
+        {
+          "probability": 0.4,
+          "result_text": "你刚把U盘插上电脑，系统就提示「此驱动器存在问题」。你试着格式化，结果U盘彻底变砖，还差点把USB口烧了。",
+          "stat_changes": {
+            "health_hardware": -10,
+            "mental_state": -15,
+            "health_system": -10
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_ask_clinic",
+      "text": "先问问电脑诊所的同学靠谱吗",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "诊所同学告诉你这种U盘多半是扩容盘，教你用「MyDiskTest」检测。你测完发现实际只有8GB，果断没买。",
+          "stat_changes": {
+            "mental_state": 10,
+            "wealth": 0
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_buy_brand",
+      "text": "还是再买一个吧",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 1.0,
+          "result_text": "你花了59元买了个闪迪32GB U盘，读写速度飞快，作业再也没丢过。室友夸你理性消费。",
+          "stat_changes": {
+            "health_storage": 15,
+            "mental_state": 10,
+            "wealth": -59
+          }
+        }
+      ]
+    }
+  ]
+}

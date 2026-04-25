@@ -8,40 +8,23 @@
   ],
   "is_unique": false,
   "weight": 100,
-  "prerequisites": {},
+  "prerequisites": {
+    "max_day": 13
+  },
   "title": "Apex丢包怎么办？",
-  "description": "今天你和室友们约好了一起玩Apex，兴致勃勃地打开游戏，却发现自己的网络频繁丢包，导致角色像个醉汉似的东倒西歪。你心里默念着，‘这可如何是好？’",
+  "description": "你和室友们约好了一起玩Apex，兴致勃勃地打开游戏，却发现自己的网络频繁丢包，导致角色像个醉汉似的东倒西歪。你心里默念着，‘这可如何是好？’",
   "technical_context": "网络丢包通常是因为网络不稳定，可能由于路由器故障或宽带速度不足造成。在玩在线游戏时，确保使用有线连接比无线连接更稳定。此外，关闭不必要的后台应用程序也能提高游戏体验。",
   "options": [
     {
       "option_id": "opt_1",
       "text": "检查网络连接，重启路由器",
-      "required_cyber_sense": 2,
+      "required_cyber_sense": 0,
       "outcomes": [
         {
-          "probability": 0.7,
+          "probability": 1,
           "result_text": "你按耐不住，果断重启了路由器，网络恢复正常，你和室友们痛痛快快地开局，尽情享受游戏乐趣！",
           "stat_changes": {
-            "health_hardware": 0,
-            "health_system": 0,
-            "health_storage": 0,
-            "health_software": 0,
-            "mental_state": 5,
-            "wealth": 0,
-            "cyber_sense": 2
-          }
-        },
-        {
-          "probability": 0.3,
-          "result_text": "重启后网络还是不太稳定，你决定寻找更专业的帮助，结果却被室友嘲笑。",
-          "stat_changes": {
-            "health_hardware": 0,
-            "health_system": 0,
-            "health_storage": 0,
-            "health_software": 0,
-            "mental_state": -3,
-            "wealth": 0,
-            "cyber_sense": 1
+            "mental_state": 5
           }
         }
       ]
@@ -49,32 +32,22 @@
     {
       "option_id": "opt_2",
       "text": "向学长请教网络优化技巧",
-      "required_cyber_sense": 1,
+      "required_cyber_sense": 0,
       "outcomes": [
         {
           "probability": 0.6,
           "result_text": "学长耐心教你一些网络优化技巧，你回去后轻松调整了设置，游戏体验大幅提升！",
           "stat_changes": {
-            "health_hardware": 0,
-            "health_system": 0,
-            "health_storage": 0,
-            "health_software": 0,
-            "mental_state": 6,
-            "wealth": 0,
-            "cyber_sense": 3
+            "health_software": 5,
+            "mental_state": 6
           }
         },
         {
           "probability": 0.4,
           "result_text": "学长的建议有点复杂，你试着调整了一些设置，结果又引发了新的问题，网络更糟了！",
           "stat_changes": {
-            "health_hardware": 0,
-            "health_system": 0,
-            "health_storage": 0,
-            "health_software": 0,
-            "mental_state": -5,
-            "wealth": 0,
-            "cyber_sense": 0
+            "health_software": -10,
+            "mental_state": -5
           }
         }
       ]
@@ -88,26 +61,15 @@
           "probability": 0.5,
           "result_text": "你在图书馆找到一本关于网络优化的书，认真阅读后，掌握了不少知识，回家后顺利解决了丢包问题！",
           "stat_changes": {
-            "health_hardware": 0,
-            "health_system": 0,
-            "health_storage": 0,
-            "health_software": 0,
-            "mental_state": 4,
-            "wealth": 0,
-            "cyber_sense": 4
+            "health_software": 5,
+            "mental_state": 4
           }
         },
         {
           "probability": 0.5,
           "result_text": "书里内容太深奥，你看得一头雾水，最后只能无奈地放弃，继续忍受网络的折磨。",
           "stat_changes": {
-            "health_hardware": 0,
-            "health_system": 0,
-            "health_storage": 0,
-            "health_software": 0,
-            "mental_state": -2,
-            "wealth": 0,
-            "cyber_sense": 0
+            "mental_state": -2
           }
         }
       ]

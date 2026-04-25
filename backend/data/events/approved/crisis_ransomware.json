@@ -1,0 +1,97 @@
+{
+  "event_id": "crisis_ransomware",
+  "event_type": "crisis",
+  "tags": ["病毒", "勒索", "数据加密", "终极"],
+  "is_unique": true,
+  "weight": 100,
+  "prerequisites": {
+    "min_day": 14
+  },
+  "title": "你的文件被锁了！",
+  "description": "你像往常一样打开电脑，发现有人通过QQ邮箱向你发送了一份通知。你点开，桌面突然变成红色警告：「所有文档、照片、视频已被 AES-256 加密。48小时内支付500元，否则私钥将被销毁。不要试图自己解密。」下面还有一个倒计时。你瞬间慌了——结课论文、比赛文件全在里面。",
+  "technical_context": "勒索病毒通常通过钓鱼邮件、破解软件或漏洞攻击传播。一旦中招，文件会被高强度加密，几乎没有免费解密可能。防范措施：定期离线备份、不打开可疑文件、安装杀毒软件并开启勒索防护。此外，断网可以防止病毒进一步扩散到局域网其他设备。",
+  "options": [
+    {
+      "option_id": "opt_pay_bitcoin",
+      "text": "凑钱付赎金，试着联系黑客",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.4,
+          "result_text": "你的钱包大出血。黑客发来了解密工具，但只恢复了部分文件，有些彻底损坏。你的钱包和心态都崩了。",
+          "stat_changes": {
+            "health_system": -40,
+            "health_software": -30,
+            "mental_state": -50,
+            "wealth": -500,
+            "cyber_sense": -20
+          }
+        },
+        {
+          "probability": 0.6,
+          "result_text": "你付了钱，黑客直接消失。你的文件永远打不开了。",
+          "stat_changes": {
+            "health_system": -60,
+            "health_software": -50,
+            "mental_state": -70,
+            "wealth": -3000,
+            "cyber_sense": -30
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_data_recovery",
+      "text": "断网，尝试用数据恢复工具抢救未被加密的文件",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.7,
+          "result_text": "你找了一款专业恢复软件，从磁盘原始扇区里找到了部分临时文件和旧版本备份，勉强凑出论文初稿。但重要照片全没了。",
+          "stat_changes": {
+            "health_system": -20,
+            "health_software": -30,
+            "mental_state": -20,
+            "wealth": -100
+          }
+        },
+        {
+          "probability": 0.3,
+          "result_text": "恢复软件扫描半天，只找出一堆乱码文件。你绝望地格式化全盘重装系统，一切从零开始。",
+          "stat_changes": {
+            "health_system": -50,
+            "health_software": -60,
+            "mental_state": -50,
+            "wealth": -50,
+            "cyber_sense": 5
+          }
+        }
+      ]
+    },
+    {
+      "option_id": "opt_windows_defender",
+      "text": "相信自带杀毒，全盘扫描清除病毒",
+      "required_cyber_sense": 0,
+      "outcomes": [
+        {
+          "probability": 0.4,
+          "result_text": "Windows Defender 竟然成功清除了病毒主体，但加密过的文件依然打不开。你保住了系统，但数据白给了。",
+          "stat_changes": {
+            "health_system": -20,
+            "health_software": -30,
+            "mental_state": -30
+          }
+        },
+        {
+          "probability": 0.6,
+          "result_text": "扫描到一半，病毒直接删除了 Defender 的实时监控服务，然后弹出更多弹窗。你的电脑彻底沦为矿机，风扇狂转。",
+          "stat_changes": {
+            "health_system": -50,
+            "health_software": -60,
+            "mental_state": -60
+          }
+        }
+      ]
+    }
+  ]
+}
